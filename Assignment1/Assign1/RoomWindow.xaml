@@ -1,0 +1,143 @@
+﻿<Window x:Class="Assign1.RoomWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assign1"
+        xmlns:validation="clr-namespace:Assign1.Validation"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        DataContext="{StaticResource RoomVM}"
+        Title="Room Management" Height="550" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="50,15,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Row="0" Grid.Column="0" Width="150" HorizontalAlignment="Left"
+                  materialDesign:HintAssist.Hint="Room Id"
+                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                  materialDesign:HintAssist.FloatingScale="0.70"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  FontSize="15" >
+                <TextBox.Text>
+                    <Binding Path="RoomId" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules>
+                            <validation:NumericValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Left"
+                  materialDesign:HintAssist.Hint="Room Type"
+                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                  materialDesign:HintAssist.FloatingScale="0.70"
+                  Text="{Binding RoomType, UpdateSourceTrigger=PropertyChanged}" 
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  FontSize="15" />
+
+            <TextBox Grid.Row="1" Grid.Column="0" Width="150" HorizontalAlignment="Left" Margin="0,10,0,0"
+                  materialDesign:HintAssist.Hint="Status"
+                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                  materialDesign:HintAssist.FloatingScale="0.70"
+                  Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}" 
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  FontSize="15" />
+            <TextBox Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Left" Margin="0,10,0,0"
+                  materialDesign:HintAssist.Hint="Price"
+                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                  materialDesign:HintAssist.FloatingScale="0.70"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  FontSize="15" >
+                <TextBox.Text>
+                    <Binding Path="Price" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules>
+                            <validation:DoubleValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <materialDesign:Card Grid.Row="1" Margin="0,10,0,0">
+            <WrapPanel>
+                <Button Command="{Binding AddCommand}" Content="Add" Margin="5" Width="100"></Button>
+                <Button Command="{Binding UpdateCommand}" Content="Update" Margin="5" Width="100"></Button>
+                <Button Command="{Binding DeleteCommand}" Content="Delete" Margin="5" Width="100"></Button>
+                <Button Command="{Binding RefreshCommand}" Content="Refresh" Margin="5" Width="100"></Button>
+ 
+            </WrapPanel>
+        </materialDesign:Card>
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <WrapPanel>
+                <TextBox Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Left" Margin="5"
+                  materialDesign:HintAssist.Hint="Type"
+                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                  materialDesign:HintAssist.FloatingScale="0.70"
+                  Text="{Binding SearchType, UpdateSourceTrigger=PropertyChanged}" 
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  FontSize="15" />
+                <TextBox Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Left" Margin="10,5,5,5"
+                  materialDesign:HintAssist.Hint="Status"
+                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                  materialDesign:HintAssist.FloatingScale="0.70"
+                  Text="{Binding SearchStatus, UpdateSourceTrigger=PropertyChanged}" 
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  FontSize="15" />
+                <TextBox Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Left" Margin="5"
+                  materialDesign:HintAssist.Hint="FromPrice"
+                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                  materialDesign:HintAssist.FloatingScale="0.70"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  FontSize="15" >
+                    <TextBox.Text>
+                        <Binding Path="FromPrice" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <validation:DoubleValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Left" Margin="10,5,5,5"
+                  materialDesign:HintAssist.Hint="ToPrice"
+                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                  materialDesign:HintAssist.FloatingScale="0.70"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  FontSize="15" >
+                    <TextBox.Text>
+                        <Binding Path="ToPrice" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <validation:DoubleValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Button Command="{Binding SearchCommand}" Content="Search" Margin="5" Width="100"></Button>
+            </WrapPanel>
+        </Grid>
+        
+        <Grid Grid.Row="3" Margin="0,10,0,0">
+            <ListView x:Name="lvCustomers" HorizontalAlignment="Center" VerticalAlignment="Top" ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" Height="273">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Room ID" Width="140" DisplayMemberBinding="{Binding Path=RoomId}"/>
+                        <GridViewColumn Header="Type" Width="130" DisplayMemberBinding="{Binding Path=RoomType}" />
+                        <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding Path=Status}"/>
+                        <GridViewColumn Header="Price" Width="150" DisplayMemberBinding="{Binding Path=Price }"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+    </Grid>
+</Window>

@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodel="clr-namespace:Assign1.ViewModel">
+    <viewmodel:MainViewModel x:Key="MainVM" ></viewmodel:MainViewModel>
+    <viewmodel:CustomerViewModel x:Key="CustomerVM" ></viewmodel:CustomerViewModel>
+    <viewmodel:RoomViewModel x:Key="RoomVM" ></viewmodel:RoomViewModel>
+    <viewmodel:BookingViewModel x:Key="BookingVM" ></viewmodel:BookingViewModel>
+</ResourceDictionary>

@@ -1,0 +1,103 @@
+﻿<Window x:Class="Assign1.BookingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assign1"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        DataContext="{StaticResource BookingVM}"
+        Title="BookingWindow" Height="550" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="50,15,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Row="0" Grid.Column="0" Width="150" HorizontalAlignment="Left"
+                  materialDesign:HintAssist.Hint="Booking ID"
+                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                  materialDesign:HintAssist.FloatingScale="0.70"
+                  Text="{Binding BookingId, UpdateSourceTrigger=PropertyChanged}" 
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  FontSize="15" 
+                    />
+
+            <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="150"
+                  materialDesign:HintAssist.Hint="Customer ID"
+                     
+                  IsEditable="True"
+                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                  FontSize="15"
+                  ItemsSource="{Binding CustomerIds}"
+                  SelectedItem="{Binding CustomerId, UpdateSourceTrigger=PropertyChanged}"
+                  Text="{Binding CustomerId, UpdateSourceTrigger=PropertyChanged}"
+                      />
+          
+            <ComboBox Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Width="150" Margin="0,10,0,0"
+                  materialDesign:HintAssist.Hint="Room ID"
+                     
+                  IsEditable="True"
+                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                  FontSize="15"
+                  ItemsSource="{Binding RoomIds}"
+                  SelectedItem="{Binding RoomId, UpdateSourceTrigger=PropertyChanged}"
+                  Text="{Binding RoomId, UpdateSourceTrigger=PropertyChanged}">
+               
+            </ComboBox>
+           
+            <DatePicker Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="0,10,0,0"
+                          Width="150"
+                          materialDesign:HintAssist.Hint="Checkin Date"
+                          Style="{StaticResource MaterialDesignFloatingHintDatePicker}" FontSize="15"
+                        SelectedDate="{Binding CheckInDate, UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,0"
+                          Width="150"
+                          materialDesign:HintAssist.Hint="Checkout Date"
+                          Style="{StaticResource MaterialDesignFloatingHintDatePicker}" FontSize="15"
+                        SelectedDate="{Binding CheckOutDate, UpdateSourceTrigger=PropertyChanged}"/>
+            
+            <TextBox Grid.Row="2" Grid.Column="1" Width="150" HorizontalAlignment="Left" Margin="0,10,0,0"
+                  materialDesign:HintAssist.Hint="Total Price"
+                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                  materialDesign:HintAssist.FloatingScale="0.70"
+                  Text="{Binding TotalPrice, UpdateSourceTrigger=PropertyChanged}" 
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  FontSize="15" IsEnabled="False"/>
+        </Grid>
+        <materialDesign:Card Grid.Row="1" Margin="0,10,0,0">
+            <WrapPanel>
+                <Button Command="{Binding CreateCommand}" Content="Order" Margin="5" Width="100"></Button>
+                <Button Command="{Binding UpdateCommand}" Content="Update" Margin="5" Width="100"></Button>
+                <Button Command="{Binding CancelCommand}" Content="Cancel" Margin="5" Width="100" Click="Button_Click"></Button>
+                <Button Command="{Binding RefreshCommand}" Content="Refresh" Margin="5" Width="100"></Button>
+                <Button Command="{Binding SearchCustomerCommand}" Content="Search" Margin="5" Width="100"></Button>
+            </WrapPanel>
+        </materialDesign:Card>
+        <Grid Grid.Row="2">
+            <ListView x:Name="lvCustomers" HorizontalAlignment="Center" VerticalAlignment="Top" ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" Height="273">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Booking ID" Width="130" DisplayMemberBinding="{Binding Path=BookingId}"/>
+                        <GridViewColumn Header="Room ID" Width="130" DisplayMemberBinding="{Binding Path=RoomId}" />
+                        <GridViewColumn Header="Customer ID" Width="138" DisplayMemberBinding="{Binding Path=CustomerId}"/>
+                        <GridViewColumn Header="Checkin Date" Width="150" DisplayMemberBinding="{Binding Path=CheckInDate, StringFormat={}{0:dd-MM-yyyy}}"/>
+                        <GridViewColumn Header="Checkout Date" Width="150" DisplayMemberBinding="{Binding Path=CheckOutDate, StringFormat={}{0:dd-MM-yyyy}}"/>
+                        <GridViewColumn Header="Total Price" Width="150" DisplayMemberBinding="{Binding Path=TotalPrice}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+    </Grid>
+</Window>
